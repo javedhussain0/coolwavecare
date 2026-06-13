@@ -95,8 +95,7 @@ const BookingForm = ({
       };
 
       const scriptURL =
-        import.meta.env.VITE_GOOGLE_SCRIPT_URL ||
-        "https://script.google.com/macros/s/AKfycbwxhDdHOS-VK-aYYJ1OTh-0gBJptgneJ1iuTWlf03dRLXGQ1LP7yK6mZAfROTtcO8j5/exec";
+        import.meta.env.VITE_GOOGLE_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbw6c06ScpCjvjCptuTXwV9pxSJtf00kN62fiqTHCKP2czu8RjNZLluodVi7y7oJe5zv/exec";
 
       try {
         await fetch(scriptURL, {
