@@ -20,7 +20,7 @@ const BookingForm = ({
     address: "",
     acType: "Split AC",
     preferredDate: "",
-    preferredTimeSlot: "", // NAYA: Time slot ka state
+    preferredTimeSlot: "",
     notes: "",
   });
   const [loading, setLoading] = useState(false);
@@ -61,7 +61,7 @@ const BookingForm = ({
       address: "",
       acType: "Split AC",
       preferredDate: "",
-      preferredTimeSlot: "", // NAYA: form reset pe time bhi clear hoga
+      preferredTimeSlot: "", 
       notes: "",
     });
   };
@@ -70,8 +70,8 @@ const BookingForm = ({
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      if (!formData.phone || !formData.address) {
-        alert("Phone Number and Address are strictly required.");
+      if (!formData.phone || !formData.address || !formData.preferredDate || !formData.preferredTimeSlot) {
+        alert("Phone Number, Address, Date, and Time Slot are strictly required.");
         return;
       }
 
@@ -83,8 +83,8 @@ const BookingForm = ({
       setLoading(true);
 
       const submitData = {
-        date: formData.preferredDate || todayDate,
-        timeSlot: formData.preferredTimeSlot || "Any Time", // NAYA: Time slot google sheet ke liye
+        date: formData.preferredDate, 
+        timeSlot: formData.preferredTimeSlot, 
         name: formData.customerName || "Customer",
         phone: formData.phone,
         service: selectedService!.name,
@@ -121,7 +121,7 @@ const BookingForm = ({
         setLoading(false);
       }
     },
-    [formData, todayDate, selectedService, onClose, onSuccess]
+    [formData, selectedService, onClose, onSuccess]
   );
 
   if (!isOpen || !selectedService) return null;
@@ -143,7 +143,6 @@ const BookingForm = ({
           </p>
         </div>
 
-        {/* Selected service info */}
         <div className="bg-blue-50 border-b border-blue-100 p-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
           <div className="font-semibold text-slate-800">{selectedService.name}</div>
           <div className="text-blue-600 font-bold bg-white px-3 py-1 rounded-full shadow-sm w-fit border border-blue-100">
@@ -168,11 +167,10 @@ const BookingForm = ({
             onSubmit={handleSubmit}
             className="p-5 sm:p-6 space-y-4 max-h-[60vh] overflow-y-auto"
           >
-            {/* Name & Phone */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">
-                  Name (Optional)
+                  Name 
                 </label>
                 <input
                   type="text"
@@ -199,7 +197,6 @@ const BookingForm = ({
               </div>
             </div>
 
-            {/* Address */}
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">
                 Full Address <span className="text-red-500">*</span>
@@ -215,7 +212,6 @@ const BookingForm = ({
               />
             </div>
 
-            {/* AC Type (Moved to take full width or adjust based on layout) */}
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">
                 AC Type
@@ -234,11 +230,10 @@ const BookingForm = ({
               </select>
             </div>
 
-            {/* Preferred Date & NAYA: Preferred Time Slot */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">
-                  Preferred Date (Optional)
+                  Preferred Date <span className="text-red-500">*</span> {/* NAYA UPDATE: Optional hataya, star lagaya */}
                 </label>
                 <input
                   type="date"
@@ -246,17 +241,19 @@ const BookingForm = ({
                   value={formData.preferredDate}
                   onChange={handleChange}
                   min={todayDate}
+                  required 
                   className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">
-                  Time Slot (Optional)
+                  Time Slot <span className="text-red-500">*</span> {/* NAYA UPDATE: Star lagaya */}
                 </label>
                 <select
                   name="preferredTimeSlot"
                   value={formData.preferredTimeSlot}
                   onChange={handleChange}
+                  required 
                   className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-white"
                 >
                   <option value="">Select a time</option>
@@ -273,7 +270,6 @@ const BookingForm = ({
               </div>
             </div>
 
-            {/* Notes */}
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">
                 Additional Notes (Optional)
@@ -288,7 +284,6 @@ const BookingForm = ({
               />
             </div>
 
-            {/* Buttons */}
             <div className="pt-4 flex flex-col-reverse sm:flex-row justify-end gap-3 border-t border-slate-100 mt-6">
               <button
                 type="button"
