@@ -20,12 +20,12 @@ const BookingForm = ({
     address: "",
     acType: "Split AC",
     preferredDate: "",
+    preferredTimeSlot: "", // NAYA: Time slot ka state
     notes: "",
   });
   const [loading, setLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   
-  // FIXED: Added | null and (null) to resolve TS2554 error
   const successTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const todayDate = new Date().toISOString().split("T")[0];
@@ -61,6 +61,7 @@ const BookingForm = ({
       address: "",
       acType: "Split AC",
       preferredDate: "",
+      preferredTimeSlot: "", // NAYA: form reset pe time bhi clear hoga
       notes: "",
     });
   };
@@ -83,6 +84,7 @@ const BookingForm = ({
 
       const submitData = {
         date: formData.preferredDate || todayDate,
+        timeSlot: formData.preferredTimeSlot || "Any Time", // NAYA: Time slot google sheet ke liye
         name: formData.customerName || "Customer",
         phone: formData.phone,
         service: selectedService!.name,
@@ -213,25 +215,27 @@ const BookingForm = ({
               />
             </div>
 
-            {/* AC Type & Preferred Date */}
+            {/* AC Type (Moved to take full width or adjust based on layout) */}
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">
+                AC Type
+              </label>
+              <select
+                name="acType"
+                value={formData.acType}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-white"
+              >
+                <option value="Split AC">Split AC</option>
+                <option value="Window AC">Window AC</option>
+                <option value="Cassette AC">Cassette AC</option>
+                <option value="Ducted AC">Ducted AC</option>
+                <option value="Not Sure">Not Sure</option>
+              </select>
+            </div>
+
+            {/* Preferred Date & NAYA: Preferred Time Slot */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">
-                  AC Type
-                </label>
-                <select
-                  name="acType"
-                  value={formData.acType}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-white"
-                >
-                  <option value="Split AC">Split AC</option>
-                  <option value="Window AC">Window AC</option>
-                  <option value="Cassette AC">Cassette AC</option>
-                  <option value="Ducted AC">Ducted AC</option>
-                  <option value="Not Sure">Not Sure</option>
-                </select>
-              </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">
                   Preferred Date (Optional)
@@ -244,6 +248,28 @@ const BookingForm = ({
                   min={todayDate}
                   className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
                 />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">
+                  Time Slot (Optional)
+                </label>
+                <select
+                  name="preferredTimeSlot"
+                  value={formData.preferredTimeSlot}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-white"
+                >
+                  <option value="">Select a time</option>
+                  <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+                  <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+                  <option value="12:00 PM - 01:00 PM">12:00 PM - 01:00 PM</option>
+                  <option value="01:00 PM - 02:00 PM">01:00 PM - 02:00 PM</option>
+                  <option value="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</option>
+                  <option value="03:00 PM - 04:00 PM">03:00 PM - 04:00 PM</option>
+                  <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
+                  <option value="05:00 PM - 06:00 PM">05:00 PM - 06:00 PM</option>
+                  <option value="06:00 PM - 07:00 PM">06:00 PM - 07:00 PM</option>
+                </select>
               </div>
             </div>
 
