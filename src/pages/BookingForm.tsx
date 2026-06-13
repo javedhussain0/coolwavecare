@@ -24,7 +24,9 @@ const BookingForm = ({
   });
   const [loading, setLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const successTimeout = useRef<ReturnType<typeof setTimeout>>();
+  
+  // FIXED: Added | null and (null) to resolve TS2554 error
+  const successTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const todayDate = new Date().toISOString().split("T")[0];
 
