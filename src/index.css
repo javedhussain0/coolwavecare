@@ -1,0 +1,88 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@keyframes snow {
+  0%,100% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+}
+
+.animate-snow {
+  animation: snow 3s ease-in-out infinite;
+}
+
+.services-section {
+  padding: 3rem 1rem;
+  background: #f8fafc;
+}
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.section-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+.service-card {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  text-align: center;
+}
+.service-icon {
+  font-size: 2.5rem;
+  color: #0891b2;
+}
+.price {
+  font-weight: bold;
+  color: #b45309;
+  margin: 0.5rem 0;
+}
+.book-btn {
+  background: #0f3b5c;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+/* Modal styles (same as previous examples) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-container {
+  background: white;
+  border-radius: 1.5rem;
+  max-width: 500px;
+  width: 90%;
+  overflow: hidden;
+}
+.form-img-area {
+  height: 150px;
+  background-image: url('https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=600');
+  background-size: cover;
+  position: relative;
+}
+/* rest of modal styles as needed */
