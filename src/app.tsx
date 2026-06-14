@@ -7,6 +7,8 @@ import Home from "./pages/Home.tsx";
 
 import Works from "./pages/OurWorks.tsx"; 
 import ACServicePage from "./components/AcServices.tsx"; 
+import TermsConditions from "./components/TermandConditions.tsx";
+import PrivacyPolicy from "./components/Privacy.tsx";
 
 export default function App() {
   return (
@@ -35,6 +37,14 @@ export default function App() {
         <Route 
           path="/" 
           element={<Home />} 
+        />
+        <Route 
+          path="/term&codition" 
+          element={<TermsConditions />} 
+        />
+        <Route 
+          path="/policy" 
+          element={<PrivacyPolicy />} 
         />
 
       </Routes>

@@ -21,7 +21,6 @@ export default function Footer() {
   ];
 
   const [currentSlogan, setCurrentSlogan] = useState(0);
-
   const [animKey, setAnimKey] = useState(1);
   const [loop, setLoop] = useState(1);
 
@@ -50,16 +49,14 @@ export default function Footer() {
 
   const coolLetters = "COOL".split("");
   const waveLetters = "WAVE".split("");
-  const lastLetters = "Care".split("")
+  const lastLetters = "Care".split("");
 
   return (
     <footer className="bg-[#020617] text-white pt-20 pb-8 border-t border-white/10 relative overflow-hidden">
-
       {/* Background glow effect */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-cyan-500/10 blur-[100px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-
         {/* Header Section with Animation */}
         <div className="text-center mb-16">
           <h2
@@ -77,7 +74,6 @@ export default function Footer() {
                 </span>
               ))}
             </span>
-
             <span className="flex">
               {waveLetters.map((char, index) => (
                 <span
@@ -91,39 +87,28 @@ export default function Footer() {
                 </span>
               ))}
             </span>
-
             <span className="flex">
               {lastLetters.map((char, index) => (
                 <span
                   key={`care-${index}`}
                   className="letter-anim text-cyan-300"
                   style={{
-                    animationDelay: `${(
-                      coolLetters.length +
-                      waveLetters.length +
-                      index
-                    ) * 0.15}s`,
+                    animationDelay: `${(coolLetters.length + waveLetters.length + index) * 0.15}s`,
                   }}
                 >
                   {char}
                 </span>
               ))}
             </span>
-
             <span
               className="letter-anim ml-2"
               style={{
-                animationDelay: `${(
-                  coolLetters.length +
-                  waveLetters.length +
-                  lastLetters.length
-                ) * 0.15}s`,
+                animationDelay: `${(coolLetters.length + waveLetters.length + lastLetters.length) * 0.15}s`,
               }}
             >
               <FaSnowflake className="text-cyan-400 animate-spin-slow text-4xl md:text-5xl" />
             </span>
           </h2>
-
           <p className="text-slate-400 mt-6 text-lg max-w-2xl mx-auto">
             Professional AC Repair, Installation & Maintenance Services. <br className="hidden md:block" />
             Bringing the Cool Wave to Your Home & Office.
@@ -139,7 +124,6 @@ export default function Footer() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-
           <div>
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-2 text-white">
               <span className="text-cyan-400 text-3xl">🌊</span> CoolWave
@@ -149,13 +133,13 @@ export default function Footer() {
               genuine spare parts, and a 1-season service warranty.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-300 hover:bg-cyan-500 hover:text-white transition-all duration-300">
+              <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-300 hover:bg-cyan-500 hover:text-white transition-all duration-300">
                 <FaTwitter size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-300 hover:bg-cyan-500 hover:text-white transition-all duration-300">
+              <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-300 hover:bg-cyan-500 hover:text-white transition-all duration-300">
                 <FaInstagram size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-300 hover:bg-cyan-500 hover:text-white transition-all duration-300">
+              <a href="https://linkedin.com/company/yourhandle" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-300 hover:bg-cyan-500 hover:text-white transition-all duration-300">
                 <FaLinkedinIn size={18} />
               </a>
             </div>
@@ -205,32 +189,51 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-6 text-white">Get in Touch</h3>
             <ul className="space-y-5">
-              <li className="flex items-start gap-4 text-slate-400 text-sm">
-                <div className="mt-1 bg-cyan-500/10 p-2.5 rounded-lg text-cyan-400">
-                  <FaPhoneAlt size={14} />
-                </div>
-                <div>
-                  <p className="font-medium text-white mb-0.5">Phone</p>
-                  <p>+91 82797 97684</p>
-                </div>
+              <li>
+                <a
+                  href="tel:+918279797684"
+                  className="flex items-start gap-4 text-slate-400 text-sm hover:text-cyan-400 transition-colors group"
+                >
+                  <div className="mt-1 bg-cyan-500/10 p-2.5 rounded-lg text-cyan-400 group-hover:bg-cyan-500/20">
+                    <FaPhoneAlt size={14} />
+                  </div>
+                  <div>
+                    <p className="font-medium text-white mb-0.5 group-hover:text-cyan-200">Phone</p>
+                    <p>+91 82797 97684</p>
+                  </div>
+                </a>
               </li>
-              <li className="flex items-start gap-4 text-slate-400 text-sm">
-                <div className="mt-1 bg-cyan-500/10 p-2.5 rounded-lg text-cyan-400">
-                  <FaEnvelope size={14} />
-                </div>
-                <div>
-                  <p className="font-medium text-white mb-0.5">Email</p>
-                  <p>info.coolwavecare@gmail.com</p>
-                </div>
+
+              <li>
+                <a
+                  href="mailto:info.coolwavecare@gmail.com"
+                  className="flex items-start gap-4 text-slate-400 text-sm hover:text-cyan-400 transition-colors group"
+                >
+                  <div className="mt-1 bg-cyan-500/10 p-2.5 rounded-lg text-cyan-400 group-hover:bg-cyan-500/20">
+                    <FaEnvelope size={14} />
+                  </div>
+                  <div>
+                    <p className="font-medium text-white mb-0.5 group-hover:text-cyan-200">Email</p>
+                    <p>info.coolwavecare@gmail.com</p>
+                  </div>
+                </a>
               </li>
-              <li className="flex items-start gap-4 text-slate-400 text-sm">
-                <div className="mt-1 bg-cyan-500/10 p-2.5 rounded-lg text-cyan-400">
-                  <FaMapMarkerAlt size={14} />
-                </div>
-                <div>
-                  <p className="font-medium text-white mb-0.5">Location</p>
-                  <p>Hathras, UP & 20+ other cities</p>
-                </div>
+
+              <li>
+                <a
+                  href="https://maps.google.com/?q=Hathras,Uttar+Pradesh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-4 text-slate-400 text-sm hover:text-cyan-400 transition-colors group"
+                >
+                  <div className="mt-1 bg-cyan-500/10 p-2.5 rounded-lg text-cyan-400 group-hover:bg-cyan-500/20">
+                    <FaMapMarkerAlt size={14} />
+                  </div>
+                  <div>
+                    <p className="font-medium text-white mb-0.5 group-hover:text-cyan-200">Location</p>
+                    <p>Hathras, UP & 20+ other cities</p>
+                  </div>
+                </a>
               </li>
             </ul>
           </div>
@@ -240,13 +243,12 @@ export default function Footer() {
           <p>© 2026 CoolWave AC Services. All rights reserved.</p>
           <div className="flex gap-6 font-medium">
             <Link to="/policy" className="hover:text-cyan-400 transition-colors">Privacy Policy</Link>
-            <Link to="/term-and-service" className="hover:text-cyan-400 transition-colors">Terms of Service</Link>
+            <Link to="/term&codition" className="hover:text-cyan-400 transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
 
       <style>{`
-        /* Staggered text pop-in animation */
         .letter-anim {
           opacity: 0;
           animation: popIn 0.5s ease-out forwards;
@@ -256,8 +258,6 @@ export default function Footer() {
           0% { opacity: 0; transform: scale(0.5) translateY(20px); filter: blur(5px); }
           100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px); }
         }
-
-        /* Continuous spin for the snowflake */
         .animate-spin-slow {
           animation: spin 6s linear infinite;
         }
@@ -265,8 +265,6 @@ export default function Footer() {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
-
-        /* Slogan slider animation */
         .slogan-container {
           perspective: 1000px;
         }
